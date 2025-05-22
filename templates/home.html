@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Home page </title>
+	</head>
+	<body>
+		<h1>List of transactions</h1>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Amount</th>
+				<th>Category</th>
+				<th>Notes</th>
+			</tr>
+			{% for items in expenses %}
+			<tr>
+				<td>{{items[0]}}</td>
+				<td>{{items[1]}}</td>
+				<td>{{items[2]}}</td>
+				<td>{{items[3]}}</td>
+				<td>{{items[4]}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

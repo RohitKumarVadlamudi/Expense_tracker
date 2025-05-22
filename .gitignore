@@ -128,6 +128,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Ignore virtual environment
+extrack/
+
 # Spyder project settings
 .spyderproject
 .spyproject
