@@ -26,7 +26,7 @@ def home():
 @app.route("/accounts-expenses", methods=["GET","POST"])
 
 def add():
-	if request.methods=="POST":
+	if request.method=="POST":
 		conn=sq.connect("expenses.db")
 		cursor=conn.cursor()
 		date=request.forms['date']
