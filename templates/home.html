@@ -4,13 +4,13 @@
 	</head>
 	<body>
 		<form method="GET" action="/">
-			<label for="month">Select month</label>
+			<label for="month"></label>
 			<select name="month" id="month">
 				{% for item in month %}
 				<option value="{{item}}" {% if item == request.args.get('month') %}selected{% endif %}>{{item}}</option>
 				{% endfor %}
 			</select>
-			<label for="year">Select year</label>
+			<label for="year"></label>
 			<select name="year" id="year">
 				{% for item in year %}
 				<option value="{{item}}" {% if item == request.args.get('year') %}selected{% endif %}>{{item}}</option>
