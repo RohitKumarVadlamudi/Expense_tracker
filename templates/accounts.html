@@ -3,7 +3,13 @@
 		<title>Accounts & expenses</title>
 	</head>
 	<body>
-		<form method="POST" action="/accounts&expenses">
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div> {{ messages[0] }} </div>
+			{% endif %}
+		{% endwith %}
+		<form method="POST" action="/accounts-expenses">
 			<input id="date" type="date" name="date" placeholder="date" required>
 			<input id="amount" type="number" name="amount" step="0.01" placeholder="Amount" required>
 			<input id="category" type="text" name="category" placeholder="Category" required>
