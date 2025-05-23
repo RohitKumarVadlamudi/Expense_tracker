@@ -3,6 +3,21 @@
 		<title>Home page </title>
 	</head>
 	<body>
+		<form method="GET" action="/">
+			<label for="month">Select month</label>
+			<select name="month" id="month">
+				{% for item in month %}
+				<option value="{{item}}" {% if item == request.args.get('month') %}selected{% endif %}>{{item}}</option>
+				{% endfor %}
+			</select>
+			<label for="year">Select year</label>
+			<select name="year" id="year">
+				{% for item in year %}
+				<option value="{{item}}" {% if item == request.args.get('year') %}selected{% endif %}>{{item}}</option>
+				{% endfor %}
+			</select>
+			<button type="submit">Search</button>
+		</form>
 		<h1>List of transactions</h1>
 		<table>
 			<tr>
