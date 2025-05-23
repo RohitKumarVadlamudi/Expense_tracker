@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 import sqlite3 as sq
 
 app = Flask(__name__)
+app.secret_key="0541tran98"
 
 
 @app.route("/")
@@ -22,5 +23,22 @@ def home():
 	conn.close()
 	return render_template("home.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
 
+@app.route("/accounts-expenses", methods=["GET","POST"])
+
+def add():
+	if request.methods=="POST":
+		conn=sq.connect("expenses.db")
+		cursor=conn.cursor()
+		date=request.forms['date']
+		amount=request.forms['notes']
+		category=request.forms['category']
+		notes=request.forms['notes']
+		cursor.execute("""INSERT INTO expenses ( date, amount, category, notes)
+			Values(?,?,?,?)""",(date, amount,category, notes))
+		connect.commit()
+		conn.close()
+		flash("Transaction added")
+		return redirect("accounts.html")
+	return render_template("accounts.html")
 if __name__=="__main__":
 	app.run(debug=True)
