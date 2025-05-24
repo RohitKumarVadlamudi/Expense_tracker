@@ -11,5 +11,11 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS expenses(
 	category TEXT NOT NULL,
 	notes TEXT)""");
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS accounts(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	account TEXT NOT NULL,
+	type TEXT NOT NULL,
+	notes TEXT)""");
+
 conn.commit()
 conn.close()
