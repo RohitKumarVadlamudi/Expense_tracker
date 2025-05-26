@@ -40,5 +40,18 @@ def add():
 		flash("Transaction added")
 		return redirect("/accounts-expenses")
 	return render_template("accounts.html")
+
+
+@app.route("/delete/id", methods=["GET", "POST"])
+
+def delete():
+	conn=sq.connect("expenses.db")
+	cursor=conn.cursor()
+	cursor.execute("""DELETE FROM expenses WHERE id IS ?""",(id))
+	conn.commit()
+	conn.close()
+	flash("Transaction deleted successfully")
+	return render_template("/")
+
 if __name__=="__main__":
 	app.run(debug=True)

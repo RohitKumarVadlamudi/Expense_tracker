@@ -37,6 +37,9 @@
 				<td>{{items[2]}}</td>
 				<td>{{items[3]}}</td>
 				<td>{{items[4]}}</td>
+				<form action="/delete/{{item[0]}}", method="POST">
+					<button type="submit">Delete</button>
+				</form>
 			</tr>
 			{% endfor %}
 		</table>
