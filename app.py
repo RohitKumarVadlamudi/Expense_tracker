@@ -53,5 +53,22 @@ def delete(id):
 	flash("Transaction deleted successfully")
 	return redirect("/")
 
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+
+def edit(id):
+	if request.method=="POST":
+		conn=sq.connect("expenses.db")
+		cursor=conn.cursor()
+		date=request.form['date']
+		amount=request.form['amount']
+		category=request.form['category']
+		notes=request.form['notes']
+		cursor.execute("""UPDATE expenses SET amount=?, category=?, notes=? WHERE id IS ?""",(amount,category,notes,id))
+		conn.commit()
+		conn.close()
+		flash("Transaction edited successfully")
+		return redirect("/")
+	return render_template("home.html")
+
 if __name__=="__main__":
 	app.run(debug=True)

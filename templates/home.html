@@ -3,6 +3,11 @@
 		<title>Home page </title>
 	</head>
 	<body>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div> {{ messages[0] }} </div>
+			{% endif %}
+		{% endwith %}
 		<a href= "/accounts-expenses">
 			<button type="button">Add transaction</button>
 		</a>
@@ -41,8 +46,21 @@
 					<form action="/delete/{{items[0]}}", method="POST">
 						<button type="submit">Delete</button>
 					</form>
+					<form action="/edit/{{items[0]}}",method="POST">
+						<button type="submit">Edit</button>
+					</form>
+				</td>
 			</tr>
 			{% endfor %}
 		</table>
+
+		<div class="edit-popup", id="edit-popup">
+			<form method="POST" action="/edit/<int:id>">
+				<input id="amount" type="number" name="amount" step="0.01" placeholder="Amount" required>
+				<input id="category" type="text" name="category" placeholder="Category" required>
+				<input id="notes" type="text" name="notes" placeholder="Notes">
+				<button type="submit">Save</button>
+			</form>
+		</div>
 	</body>
 </html>
