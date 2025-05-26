@@ -42,16 +42,16 @@ def add():
 	return render_template("accounts.html")
 
 
-@app.route("/delete/id", methods=["GET", "POST"])
+@app.route("/delete/<int:id>", methods=["GET", "POST"])
 
-def delete():
+def delete(id):
 	conn=sq.connect("expenses.db")
 	cursor=conn.cursor()
-	cursor.execute("""DELETE FROM expenses WHERE id IS ?""",(id))
+	cursor.execute("""DELETE FROM expenses WHERE id IS ?""",(id,))
 	conn.commit()
 	conn.close()
 	flash("Transaction deleted successfully")
-	return render_template("/")
+	return redirect("/")
 
 if __name__=="__main__":
 	app.run(debug=True)
