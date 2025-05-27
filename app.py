@@ -44,8 +44,8 @@ def add():
 		conn.commit()
 		conn.close()
 		flash("Transaction added")
-		return redirect("/add")
-	return render_template("transactions.html")
+		return redirect("/transactions")
+	return render_template("add.html")
 
 
 @app.route("/delete/<int:id>", methods=["GET", "POST"])
