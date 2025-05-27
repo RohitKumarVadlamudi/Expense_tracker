@@ -5,6 +5,12 @@ app = Flask(__name__)
 app.secret_key="0541tran98"
 
 
+@app.route("/")
+
+def home():
+	return render_template("home.html")
+
+
 @app.route("/transactions")
 
 def transactions():
