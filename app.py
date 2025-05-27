@@ -85,7 +85,7 @@ def edit(id):
 			flash("Transaction not found")
 			return redirect("/transactions")
 
-	return render_template("home.html")
+	return render_template("transactions.html")
 
 
 @app.route("/accounts")
