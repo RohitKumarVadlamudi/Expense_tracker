@@ -9,7 +9,7 @@
 				<div> {{ messages[0] }} </div>
 			{% endif %}
 		{% endwith %}
-		<form method="POST" action="/accounts-expenses">
+		<form method="POST" action="/add">
 			<input id="date" type="date" name="date" placeholder="date" required>
 			<input id="amount" type="number" name="amount" step="0.01" placeholder="Amount" required>
 			<input id="category" type="text" name="category" placeholder="Category" required>

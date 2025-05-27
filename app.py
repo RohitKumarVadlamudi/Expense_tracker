@@ -23,7 +23,7 @@ def home():
 	conn.close()
 	return render_template("home.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
 
-@app.route("/accounts-expenses", methods=["GET","POST"])
+@app.route("/add", methods=["GET","POST"])
 
 def add():
 	if request.method=="POST":
@@ -38,7 +38,7 @@ def add():
 		conn.commit()
 		conn.close()
 		flash("Transaction added")
-		return redirect("/accounts-expenses")
+		return redirect("/add")
 	return render_template("accounts.html")
 
 
