@@ -3,6 +3,9 @@
 		<title>Edit transaction</title>
 	</head>
 	<body>
+		<a href= "/">
+			<button type="button">Home</button>
+		</a>
 
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
@@ -16,9 +19,6 @@
 			<input id="notes" type="text" name="notes" value="{{notes}}" placeholder="Notes">
 			<button type="submit">Save</button>
 		</form>
-		<a href= "/">
-			<button type="button">Home</button>
-		</a>
 	</body>
 
 </html>

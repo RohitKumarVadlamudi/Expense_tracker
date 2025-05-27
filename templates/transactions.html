@@ -3,6 +3,9 @@
 		<title>Transactions page </title>
 	</head>
 	<body>
+		<a href= "/">
+			<button type="button">Home</button>
+		</a>
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<div> {{ messages[0] }} </div>
@@ -53,8 +56,5 @@
 			</tr>
 			{% endfor %}
 		</table>
-		<a href= "/">
-			<button type="button">Home</button>
-		</a>
 	</body>
 </html>
