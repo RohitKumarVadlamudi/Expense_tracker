@@ -27,7 +27,7 @@ def transactions():
 		cursor.execute("""SELECT*FROM expenses""")
 	expenses=cursor.fetchall()
 	conn.close()
-	return render_template("transaction.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
+	return render_template("transactions.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
 
 @app.route("/add", methods=["GET","POST"])
 
