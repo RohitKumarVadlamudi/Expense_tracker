@@ -94,9 +94,9 @@ def accounts():
 	conn=sq.connect("expenses.db")
 	cursor=conn.cursor()
 	cursor.execute("""SELECT * FROM accounts""")
-	accounts=cursor.fecthall()
-	cursor.commit()
-	cursor.close()
+	accounts=cursor.fetchall()
+	conn.commit()
+	conn.close()
 	return render_template("accounts.html")
 
 if __name__=="__main__":
