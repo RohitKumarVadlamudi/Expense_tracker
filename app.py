@@ -56,9 +56,9 @@ def delete(id):
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 
 def edit(id):
+	conn=sq.connect("expenses.db")
+	cursor=conn.cursor()
 	if request.method=="POST":
-		conn=sq.connect("expenses.db")
-		cursor=conn.cursor()
 		date=request.form['date']
 		amount=request.form['amount']
 		category=request.form['category']
@@ -69,7 +69,7 @@ def edit(id):
 		flash("Transaction edited successfully")
 		return redirect("/")
 	else:
-		cursor.execute("""FROM expenses SELECT amount, category, notes WHERE id IS ?""",(id,))
+		cursor.execute("""SELECT amount, category, notes FROM expenses WHERE id IS ?""",(id,))
 		row = cursor.fetchone()
 		conn.close()
 		if row:
