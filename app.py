@@ -88,16 +88,16 @@ def edit(id):
 	return render_template("home.html")
 
 
-	@app.route("/accounts")
+@app.route("/accounts")
 
-	def accounts():
-		conn=sq.connect("expenses.db")
-		cursor=conn.cursor()
-		cursor.execute("""SELECT * FROM accounts""")
-		accounts=cursor.fecthall()
-		cursor.commit()
-		cursor.close()
-		return render_template("accounts.html")
+def accounts():
+	conn=sq.connect("expenses.db")
+	cursor=conn.cursor()
+	cursor.execute("""SELECT * FROM accounts""")
+	accounts=cursor.fecthall()
+	cursor.commit()
+	cursor.close()
+	return render_template("accounts.html")
 
 if __name__=="__main__":
 	app.run(debug=True)
