@@ -14,8 +14,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS expenses(
 cursor.execute("""CREATE TABLE IF NOT EXISTS accounts(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	account TEXT NOT NULL,
-	type TEXT NOT NULL,
-	notes TEXT)""");
+	type TEXT NOT NULL)""");
 
 conn.commit()
 conn.close()

@@ -5,9 +5,9 @@ app = Flask(__name__)
 app.secret_key="0541tran98"
 
 
-@app.route("/")
+@app.route("/transactions")
 
-def home():
+def transactions():
 	conn = sq.connect("expenses.db")
 	cursor=conn.cursor()
 
@@ -21,7 +21,7 @@ def home():
 		cursor.execute("""SELECT*FROM expenses""")
 	expenses=cursor.fetchall()
 	conn.close()
-	return render_template("home.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
+	return render_template("transaction.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
 
 @app.route("/add", methods=["GET","POST"])
 
@@ -51,7 +51,7 @@ def delete(id):
 	conn.commit()
 	conn.close()
 	flash("Transaction deleted successfully")
-	return redirect("/")
+	return redirect("/transactions")
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 
@@ -67,7 +67,7 @@ def edit(id):
 		conn.commit()
 		conn.close()
 		flash("Transaction edited successfully")
-		return redirect("/")
+		return redirect("/transactions")
 	else:
 		cursor.execute("""SELECT date, amount, category, notes FROM expenses WHERE id IS ?""",(id,))
 		row = cursor.fetchone()
@@ -77,9 +77,21 @@ def edit(id):
 			return render_template("edit.html", id=id, date=date, amount=amount, category=category, notes=notes)
 		else:
 			flash("Transaction not found")
-			return redirect("/")
+			return redirect("/transactions")
 
 	return render_template("home.html")
+
+
+	@app.route("/accounts")
+
+	def accounts():
+		conn=sq.connect("expenses.db")
+		cursor=conn.cursor()
+		cursor.execute("""SELECT * FROM accounts""")
+		accounts=cursor.fecthall()
+		cursor.commit()
+		cursor.close()
+		return render_template("accounts.html")
 
 if __name__=="__main__":
 	app.run(debug=True)
