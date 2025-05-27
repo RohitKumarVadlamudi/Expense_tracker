@@ -68,6 +68,17 @@ def edit(id):
 		conn.close()
 		flash("Transaction edited successfully")
 		return redirect("/")
+	else:
+		cursor.execute("""FROM expenses SELECT amount, category, notes WHERE id IS ?""",(id,))
+		row = cursor.fetchone()
+		conn.close()
+		if row:
+			amount, category, notes = row
+			return render_template("edit.html", id=id, amount=amount, category=category, notes=notes)
+		else:
+			flash("Transaction not found")
+			return redirect("/")
+
 	return render_template("home.html")
 
 if __name__=="__main__":
