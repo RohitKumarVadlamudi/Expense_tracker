@@ -3,6 +3,11 @@
 		<title>Accounts</title>
 	</head>
 	<body>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div>{{messages[0]}}</div>
+			{% endif %}
+		{% endwith %}
 		<a href= "/">
 			<button type="button">Home</button>
 		</a>
@@ -13,7 +18,7 @@
 				<th>Name</th>
 				<th>Type</th>
 			</tr>
-			{% for item in account %}
+			{% for item in accounts %}
 			<tr>
 				<td>{{item[0]}}</td>
 				<td>{{item[1]}}</td>
@@ -21,5 +26,13 @@
 			</tr>
 			{% endfor%}
 		</table>
+
+		<h2>Add new account</h2>
+
+		<form action="/add-acc" method= "POST">
+			<input id=account name="account" type="text" placeholder="acount" required> 
+			<input id="type" name="type" type="text" placeholder="type" required>
+			<button type="submit">Save</button>
+		</form>
 	</body>
 </html>

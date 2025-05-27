@@ -97,7 +97,22 @@ def accounts():
 	accounts=cursor.fetchall()
 	conn.commit()
 	conn.close()
-	return render_template("accounts.html")
+	return render_template("accounts.html", accounts=accounts)
+
+@app.route("/add-acc", methods=["GET", "POST"])
+
+def add_acc():
+	if request.method=="POST":
+		conn=sq.connect("expenses.db")
+		cursor=conn.cursor()
+		account=request.form["account"]
+		type=request.form['type']
+		cursor.execute("""INSERT INTO accounts (account, type) VALUES (?,?)""",(account,type))
+		conn.commit()
+		conn.close()
+		flash("Account Added successfully")
+		return redirect("/accounts")
+	return render_template("/accounts")
 
 if __name__=="__main__":
 	app.run(debug=True)
