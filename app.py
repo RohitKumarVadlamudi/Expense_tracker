@@ -4,12 +4,14 @@ import sqlite3 as sq
 app = Flask(__name__)
 app.secret_key="0541tran98"
 
+# Home page 
 
 @app.route("/")
 
 def home():
 	return render_template("home.html")
 
+# Transactions page
 
 @app.route("/transactions")
 
@@ -28,6 +30,9 @@ def transactions():
 	expenses=cursor.fetchall()
 	conn.close()
 	return render_template("transactions.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
+
+
+# add a transaction
 
 @app.route("/add", methods=["GET","POST"])
 
@@ -50,6 +55,7 @@ def add():
 	conn.close()
 	return render_template("add.html", category=category)
 
+# add new category to category table
 
 @app.route("/category-add", methods=["POST"])
 
@@ -63,7 +69,7 @@ def category_add():
 	return render_template("/home.html")
 
 
-
+# delete a transaction, button in transaction page
 
 @app.route("/delete/<int:id>", methods=["GET", "POST"])
 
@@ -75,6 +81,8 @@ def delete(id):
 	conn.close()
 	flash("Transaction deleted successfully")
 	return redirect("/transactions")
+
+# edit a transaction, button in transaction page 
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 
@@ -104,6 +112,7 @@ def edit(id):
 
 	return render_template("transactions.html")
 
+# accounts page with a list of all accounts
 
 @app.route("/accounts")
 
@@ -115,6 +124,9 @@ def accounts():
 	conn.commit()
 	conn.close()
 	return render_template("accounts.html", accounts=accounts)
+
+
+# Add a new account to list of accounts
 
 @app.route("/add-acc", methods=["GET", "POST"])
 
