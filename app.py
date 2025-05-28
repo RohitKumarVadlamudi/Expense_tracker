@@ -48,6 +48,20 @@ def add():
 	return render_template("add.html")
 
 
+@app.route("/category-add", methods=["POST"])
+
+def category_add(): 	
+	conn=sq.connect("expenses.db")
+	cursor=conn.cursor()
+	category=request.form['category']
+	cursor.execute("""INSERT INTO category (name) VALUES (?)""",(category,))
+	conn.commit()
+	conn.close()
+	return render_template("/home.html")
+
+
+
+
 @app.route("/delete/<int:id>", methods=["GET", "POST"])
 
 def delete(id):
