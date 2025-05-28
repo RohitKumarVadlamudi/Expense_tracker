@@ -16,5 +16,9 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS accounts(
 	account TEXT NOT NULL,
 	type TEXT NOT NULL)""");
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS category(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name TEXT NOT NULL)""");
+
 conn.commit()
 conn.close()
