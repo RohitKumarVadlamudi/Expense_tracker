@@ -32,9 +32,9 @@ def transactions():
 @app.route("/add", methods=["GET","POST"])
 
 def add():
+	conn= sq.connect("expenses.db")
+	cursor=conn.cursor()
 	if request.method=="POST":
-		conn= sq.connect("expenses.db")
-		cursor=conn.cursor()
 		date=request.form['date']
 		amount=request.form['amount']
 		category=request.form['category']
@@ -42,10 +42,13 @@ def add():
 		cursor.execute("""INSERT INTO expenses ( date, amount, category, notes)
 			Values(?,?,?,?)""",(date, amount,category, notes))
 		conn.commit()
-		conn.close()
 		flash("Transaction added")
 		return redirect("/transactions")
-	return render_template("add.html")
+	else:
+		cursor.execute("""SELECT name FROM category""")
+		category=[row[0] for row in cursor.fetchall()]
+	conn.close()
+	return render_template("add.html", category=category)
 
 
 @app.route("/category-add", methods=["POST"])

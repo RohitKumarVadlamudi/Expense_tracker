@@ -15,7 +15,11 @@
 		<form method="POST" action="/add">
 			<input id="date" type="date" name="date" placeholder="date" required>
 			<input id="amount" type="number" name="amount" step="0.01" placeholder="Amount" required>
-			<input id="category" type="text" name="category" placeholder="Category" required>
+			<select name="category" id="category">
+			{% for item in category %}
+				<option value="{{item}}">{{item}}</option>
+			{% endfor %}
+			</select>
 			<input id="notes" type="text" name="notes" placeholder="Notes">
 			<button type="submit">Add</button>
 		</form>
