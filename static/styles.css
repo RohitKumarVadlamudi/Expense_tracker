@@ -9,6 +9,15 @@ body {
   padding: 0;
 }
 
+form, .content-box {
+  background-color: rgba(255, 255, 255, 0.85); /* White with some transparency */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 30px auto;
+  width: fit-content;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f8f8;
