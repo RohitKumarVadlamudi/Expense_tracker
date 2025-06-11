@@ -49,13 +49,17 @@
 				<td>{{items[2]}}</td>
 				<td>{{items[3]}}</td>
 				<td>{{items[4]}}</td>
-				<td>
-					<form action="/delete/{{items[0]}}", method="POST">
-						<button type="submit">Delete</button>
-					</form>
-					<form action="/edit/{{items[0]}}",method="POST">
-						<button type="submit">Edit</button>
-					</form>
+				<td style="position: relative;">
+					<input type="checkbox" id="menu-{{ items[0] }}" class="menu-toggle">
+					<label for="menu-{{ items[0] }}" class="menu-dots">✏️</label>
+					<div class="menu-options">
+						<form action="/edit/{{ items[0] }}" method="POST">
+							<button type="submit">Edit</button>
+						</form>
+						<form action="/delete/{{ items[0] }}" method="POST">
+							<button type="submit">Delete</button>
+						</form>
+					</div>
 				</td>
 			</tr>
 			{% endfor %}
