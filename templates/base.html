@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<!-- Header -->
+    <header>
+        <h1>My Expense Tracker</h1>
+        <nav>
+            <a href="/dashboard">Dashboard</a> |
+            <a href="/transactions">Transaction Chart</a> |
+            <a href="/accounts">Accounts Chart</a>
+        </nav>
+    </header>
+
+    <!-- Page content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Tracker. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
