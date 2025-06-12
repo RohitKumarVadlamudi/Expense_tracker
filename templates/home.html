@@ -1,24 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Accounts Chart{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block head %}
 
 {% endblock %}
 
 {% block content %}
-		<a href="/transactions">
-			<button type="submit">Transactions</button>
-		</a>
-		<br><br>
-		<a href="/accounts">
-			<button type="submit">Accounts</button>
-		</a>
-		<br><br>	
-		<label>Add Category</label>
-		<form method="POST" action="/category-add">
-			<input id="category" name="category" type="text" placeholder="category">
-			<br>
-			<button type="submit">SAVE</button>
-		</form>
+
 {% endblock %}
