@@ -1,152 +1,16 @@
-body {
-  background-image: url("/static/images/background.jpg");
-  background-size: cover;       /* Scale image to cover screen */
-  background-repeat: no-repeat; /* Don’t tile the image */
-  background-attachment: fixed; /* Keeps image in place while scrolling */
-  background-position: center;  /* Center the image */
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+header{
+  background-color: #b71c1c;
+  color: black;
+  padding: 5px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-form, .content-box {
-  background-color: rgba(255, 255, 255, 0.85); /* White with some transparency */
-  padding: 20px;
-  border-radius: 10px;
-  margin: 30px auto;
-  width: fit-content;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  margin: 20px;
-}
-
-form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  width: fit-content;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-input, select, button {
-  margin: 10px 0;
-  padding: 8px;
-  width: 100%;
-  max-width: 300px;
-}
-
-button {
-  background-color: #007bff;
+footer{
+  background-color: #101010;
   color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1rem;
+  padding: 15px 0;
   text-align: left;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-  border: 1px solid #ccc;
-}
-
-th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Responsive for smaller screens */
-@media screen and (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-
-  tr {
-    margin-bottom: 15px;
-  }
-
-  td {
-    padding-left: 50%;
-    position: relative;
-  }
-
-  td::before {
-    position: absolute;
-    top: 12px;
-    left: 15px;
-    width: 45%;
-    white-space: nowrap;
-    font-weight: bold;
-    color: #555;
-    content: attr(data-label); /* Requires setting data-label in HTML */
-  }
-
-  th {
-    display: none;
-  }
-}
-
-.menu-toggle {
-  display: none;
-}
-
-.menu-dots {
-  font-size: 20px;
-  cursor: pointer;
-  display: inline-block;
-  user-select: none;
-}
-
-.menu-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 10;
-  padding: 5px;
-}
-
-.menu-options form {
-  margin: 0;
-}
-
-.menu-options button {
-  background: none;
-  border: none;
-  padding: 5px 10px;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-}
-
-.menu-options button:hover {
-  background-color: #eee;
-}
-
-/* Show menu when checked */
-.menu-toggle:checked + .menu-dots + .menu-options {
-  display: block;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
 }
