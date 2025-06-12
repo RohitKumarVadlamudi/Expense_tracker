@@ -5,6 +5,7 @@
     <title>{% block title %}My App{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}{% endblock %}
 </head>
 <body>
 	<!-- Header -->
@@ -24,7 +25,9 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 My Tracker. All rights reserved.</p>
+        <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
+        <p>&copy; Rohit Kumar Vadlamudi</p>
+        <p>&copy; Contact: rohitkumarvadlamudi@gmail.com</p>
     </footer>
 
 </body>

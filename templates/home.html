@@ -1,11 +1,12 @@
-<html>
-	<head>
-		<title>Home Page</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-	</head>
-	<body>
+{% block title %}Accounts Chart{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
 		<a href="/transactions">
 			<button type="submit">Transactions</button>
 		</a>
@@ -20,5 +21,4 @@
 			<br>
 			<button type="submit">SAVE</button>
 		</form>
-	</body>
-</html>
+{% endblock %}
