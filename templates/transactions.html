@@ -8,9 +8,6 @@
 {% endblock %}
 
 {% block content %}
-		<a href= "/">
-			<button type="button">Home</button>
-		</a>
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<div> {{ messages[0] }} </div>
