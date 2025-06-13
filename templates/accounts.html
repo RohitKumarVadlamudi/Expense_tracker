@@ -1,11 +1,12 @@
-<html>
-	<head>
-		<title>Accounts</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-	</head>
-	<body>
+{% block title %}Accounts{% endblock %}
+
+{% block head %}
+	<title>Accounts</title>
+{% endblock %}
+
+{% block content %}
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<div>{{messages[0]}}</div>
@@ -37,5 +38,4 @@
 			<input id="type" name="type" type="text" placeholder="type" required>
 			<button type="submit">Save</button>
 		</form>
-	</body>
-</html>
+{% endblock %}
