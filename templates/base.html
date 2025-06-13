@@ -10,19 +10,42 @@
 <body>
 	<!-- Header -->
     <header>
-        <h1>My Expense Tracker</h1>
-    </header>
+        <div class="header_logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" >
+            </a>
+        </div>
 
-    <!-- Page content -->
+        <!-- Hamburger menu to the right which opens up to show other pages links of the webapp -->
+        <div class="options_menu">
+            <input type="checkbox" id="options-toggle" class="options-toggle">
+            <label for="options-toggle" class="options-icon">&#9776;</label>
+            <nav class="options">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/transactions">Transactions</a></li>
+                    <li><a href="/accounts">Accounts</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
-        <p> Developed by: Rohit Kumar Vadlamudi</p>
-        <p>       Contact: rohitkumarvadlamudi@gmail.com</p>
+        <div class="footer_text">
+            <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
+            <p> Developed by: Rohit Kumar Vadlamudi</p>
+            <p> Contact: rohitkumarvadlamudi@gmail.com</p>
+        </div>
+        <div class="footer_logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo_with_name.png') }}" alt="Logo" >
+            </a>
+        </div>
     </footer>
 
 </body>
