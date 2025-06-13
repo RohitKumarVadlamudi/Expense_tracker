@@ -1,11 +1,13 @@
-<html>
-	<head>
-		<title>Transactions page </title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-	</head>
-	<body>
+{% block title %}Transactions page{% endblock %}
+
+{% block head %}
+	<title>Transactions page </title>
+
+{% endblock %}
+
+{% block content %}
 		<a href= "/">
 			<button type="button">Home</button>
 		</a>
@@ -65,5 +67,5 @@
 			</tr>
 			{% endfor %}
 		</table>
-	</body>
-</html>
+
+{% endblock %}
