@@ -217,7 +217,16 @@ footer {
 }
 
 /* Show popup when checkbox is checked */
-#add-popup-toggle:checked ~ .popup-overlay {
+.popup-overlay {
+    display: none;
+}
+
+/* Show only the correct popup based on which checkbox is checked */
+#add-popup-toggle:checked ~ .transaction-popup {
+    display: flex;
+}
+
+#category-popup-toggle:checked ~ .category-popup {
     display: flex;
 }
 
