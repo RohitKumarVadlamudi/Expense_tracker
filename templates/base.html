@@ -3,66 +3,46 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}My App{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Use Font Awesome free CDN for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-dNmEQwtxMjDjQ6hWILV9Tu+PZacU+pPYxX+OqL93MqRrsbOUbb9fiSZL5fw75H48gOHvROKnHjpq+3uZxg5rKA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Font Awesome CDN for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     {% block head %}{% endblock %}
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a class="sidebar_item" href="/">
-            <i class="fas fa-home"></i>
-            <span class="label">Home</span>
-        </a>
-        <a class="sidebar_item" href="/transactions">
-            <i class="fas fa-file-invoice-dollar"></i>
-            <span class="label">Transactions</span>
-        </a>
-        <a class="sidebar_item" href="/accounts">
-            <i class="fas fa-wallet"></i>
-            <span class="label">Accounts</span>
-        </a>
-    </div>
-
-    <!-- Header -->
     <header>
-        <div class="header_logo">
-            <a href="/">
+        <div class="header_left">
+            <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle" />
+            <label for="sidebar-toggle" class="sidebar-toggle-label" aria-label="Toggle Sidebar">
+                <i class="fas fa-bars"></i>
+            </label>
+            <a href="/" class="header_logo">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
             </a>
         </div>
-
-        <!-- Hamburger menu to the right -->
-        <div class="options_menu">
-            <input type="checkbox" id="options-toggle" class="options-toggle" />
-            <label for="options-toggle" class="options-icon">&#9776;</label>
-            <nav class="options">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/transactions">Transactions</a></li>
-                    <li><a href="/accounts">Accounts</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
     </header>
 
-    <!-- Main content -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <div class="container">
+        <aside class="sidebar">
+            <a href="/" class="sidebar_item">
+                <i class="fas fa-home"></i>
+                <span class="label">Home</span>
+            </a>
+            <a href="/transactions" class="sidebar_item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span class="label">Transactions</span>
+            </a>
+            <a href="/accounts" class="sidebar_item">
+                <i class="fas fa-wallet"></i>
+                <span class="label">Accounts</span>
+            </a>
+        </aside>
 
-    <!-- Footer -->
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
     <footer>
         <div class="footer_text">
             <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
@@ -71,10 +51,7 @@
         </div>
         <div class="footer_logo">
             <a href="/">
-                <img
-                    src="{{ url_for('static', filename='images/logo_with_name.png') }}"
-                    alt="Logo"
-                />
+                <img src="{{ url_for('static', filename='images/logo_with_name.png') }}" alt="Logo" />
             </a>
         </div>
     </footer>

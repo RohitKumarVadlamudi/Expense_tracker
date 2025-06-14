@@ -1,33 +1,114 @@
-/* ########### General Reset / Base ########### */
-
+/* Reset and base */
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
 }
 
-/* ########### Sidebar ########### */
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: #222;
+  background: #fff;
+}
 
-.sidebar {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* HEADER */
+
+header {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 60px;
-  background-color: #222;
-  overflow-x: hidden;
-  transition: width 0.3s;
+  right: 0;
+  height: 60px;
+  background-color: #1cbb06;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   display: flex;
-  flex-direction: column;
-  padding-top: 60px; /* space for header */
-  z-index: 15; /* above footer but below header */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  z-index: 20;
+  color: black;
 }
 
-.sidebar:hover {
-  width: 200px;
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header_logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+header .header_nav ul {
+  display: flex;
+  gap: 1rem;
+}
+
+header .header_nav a {
+  color: black;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+header .header_nav a:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* SIDEBAR TOGGLE BUTTON (hamburger) */
+
+.sidebar-toggle {
+  display: none;
+}
+
+.sidebar-toggle-label {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+/* CONTAINER (sidebar + main content) */
+
+.container {
+  display: flex;
+  padding-top: 60px; /* header height */
+  padding-bottom: 70px; /* footer height */
+  min-height: calc(100vh - 130px);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  position: fixed;
+  top: 60px; /* below header */
+  left: 0;
+  bottom: 70px; /* above footer */
+  width: 60px;
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  z-index: 15;
 }
 
 .sidebar_item {
@@ -35,8 +116,7 @@ body {
   align-items: center;
   padding: 15px;
   color: white;
-  text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.2s ease;
 }
 
 .sidebar_item:hover {
@@ -45,140 +125,88 @@ body {
 
 .sidebar_item i {
   font-size: 1.2rem;
-  margin-right: 10px;
   width: 30px;
   text-align: center;
-  color: white;
+  margin-right: 0;
+  flex-shrink: 0;
 }
 
 .label {
   opacity: 0;
-  transition: opacity 0.3s;
   white-space: nowrap;
+  transition: opacity 0.3s ease;
+  margin-left: 10px;
+  font-weight: 600;
+  pointer-events: none;
 }
 
-.sidebar:hover .label {
+/* Sidebar expanded state controlled by checkbox */
+
+.sidebar-toggle:checked ~ .container .sidebar {
+  width: 200px;
+}
+
+.sidebar-toggle:checked ~ .container main {
+  margin-left: 200px;
+}
+
+.sidebar-toggle:checked ~ .container .sidebar .label {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* ########### Header ########### */
+/* MAIN CONTENT */
 
-header {
+main {
+  flex: 1;
+  margin-left: 60px;
+  padding: 1rem;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 130px);
+}
+
+/* FOOTER */
+
+footer {
   position: fixed;
-  top: 0;
-  left: 60px; /* next to sidebar */
+  left: 0;
   right: 0;
-  height: 60px;
-  background-color: #1cbb06;
-  color: black;
+  bottom: 0;
+  height: 70px;
+  background-color: #6e726e;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
   z-index: 20;
-}
-
-.header_logo {
-  display: flex;
-  align-items: center;
-}
-
-.header_logo img {
-  max-height: 60px;
-  width: auto;
-  display: block;
-}
-
-/* ########### Footer ########### */
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 60px; /* next to sidebar */
-  right: 0;
-  background-color: #6e726e;
-  color: white;
-  padding: 10px 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9em;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-  border-top: 1px solid #ccc;
-  z-index: 20;
-  min-height: 60px;
-  /* prevent footer from collapsing */
 }
 
 .footer_text {
   display: flex;
   flex-direction: column;
-}
-
-.footer_logo {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  font-size: 0.9em;
 }
 
 .footer_logo img {
   max-height: 50px;
   width: auto;
-  display: block;
 }
 
-/* ########### Main Content ########### */
+/* Responsive - For small screens */
 
-main {
-  margin-left: 60px; /* space for sidebar */
-  margin-top: 60px; /* space for header */
-  margin-bottom: 60px; /* space for footer */
-  padding: 1rem;
-}
-
-/* ########### Hamburger Menu ########### */
-
-.options-toggle {
-  display: none;
-}
-
-.options-icon {
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-  color: black;
-}
-
-.options {
-  position: absolute;
-  top: 60px; /* below header */
-  right: 0;
-  background: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  display: none;
-  flex-direction: column;
-  width: 200px;
-  z-index: 30;
-}
-
-.options ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.options li a {
-  display: block;
-  padding: 10px 20px;
-  color: black;
-  text-decoration: none;
-}
-
-.options li a:hover {
-  background: #eee;
-}
-
-.options-toggle:checked + .options-icon + .options {
-  display: flex;
+@media (max-width: 600px) {
+  .sidebar {
+    width: 60px !important;
+  }
+  main {
+    margin-left: 60px !important;
+  }
+  .sidebar-toggle-label {
+    font-size: 1.3rem;
+  }
+  header .header_nav ul {
+    display: none;
+  }
 }
