@@ -3,61 +3,82 @@
 {% block title %}Transactions page{% endblock %}
 
 {% block content %}
-		{% with messages = get_flashed_messages() %}
-			{% if messages %}
-				<div> {{ messages[0] }} </div>
-			{% endif %}
-		{% endwith %}
-		<br><br>
-		<a href= "/add">
-			<button type="button">Add transaction</button>
-		</a>
-		<form method="GET" action="/transactions">
-			<label for="month"></label>
-			<select name="month" id="month">
-				{% for item in month %}
-				<option value="{{item}}" {% if item == request.args.get('month') %}selected{% endif %}>{{item}}</option>
-				{% endfor %}
-			</select>
-			<label for="year"></label>
-			<select name="year" id="year">
-				{% for item in year %}
-				<option value="{{item}}" {% if item == request.args.get('year') %}selected{% endif %}>{{item}}</option>
-				{% endfor %}
-			</select>
-			<button type="submit">Search</button>
-		</form>
-		<h1>List of transactions</h1>
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Amount</th>
-				<th>Category</th>
-				<th>Notes</th>
-				<th>Actions</th>
-			</tr>
-			{% for items in expenses %}
-			<tr>
-				<td>{{items[0]}}</td>
-				<td>{{items[1]}}</td>
-				<td>{{items[2]}}</td>
-				<td>{{items[3]}}</td>
-				<td>{{items[4]}}</td>
-				<td style="position: relative;">
-					<input type="checkbox" id="menu-{{ items[0] }}" class="menu-toggle">
-					<label for="menu-{{ items[0] }}" class="menu-dots">✏️</label>
-					<div class="menu-options">
-						<form action="/edit/{{ items[0] }}" method="POST">
-							<button type="submit">Edit</button>
-						</form>
-						<form action="/delete/{{ items[0] }}" method="POST">
-							<button type="submit">Delete</button>
-						</form>
-					</div>
-				</td>
-			</tr>
-			{% endfor %}
-		</table>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div>{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
 
+    <!-- Checkbox hack for popup -->
+    <input type="checkbox" id="add-popup-toggle" hidden>
+    <label for="add-popup-toggle" class="add-button">Add transaction</label>
+
+    <!-- Popup modal -->
+    <div class="popup-overlay">
+        <label for="add-popup-toggle" class="popup-bg"></label>
+        <div class="popup-content">
+            <h2>Add New Transaction</h2>
+            <form method="POST" action="/add">
+                <input id="date" type="date" name="date" placeholder="Date" required>
+                <input id="amount" type="number" name="amount" step="0.01" placeholder="Amount" required>
+                <select name="category" id="category">
+                    {% for item in category %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <input id="notes" type="text" name="notes" placeholder="Notes">
+                <button type="submit">Add</button>
+            </form>
+            <label for="add-popup-toggle" class="close-btn">&times;</label>
+        </div>
+    </div>
+
+    <form method="GET" action="/transactions">
+        <label for="month"></label>
+        <select name="month" id="month">
+            {% for item in month %}
+                <option value="{{ item }}" {% if item == request.args.get('month') %}selected{% endif %}>{{ item }}</option>
+            {% endfor %}
+        </select>
+        <label for="year"></label>
+        <select name="year" id="year">
+            {% for item in year %}
+                <option value="{{ item }}" {% if item == request.args.get('year') %}selected{% endif %}>{{ item }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <h1>List of transactions</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+        {% for items in expenses %}
+            <tr>
+                <td>{{ items[0] }}</td>
+                <td>{{ items[1] }}</td>
+                <td>{{ items[2] }}</td>
+                <td>{{ items[3] }}</td>
+                <td>{{ items[4] }}</td>
+                <td style="position: relative;">
+                    <input type="checkbox" id="menu-{{ items[0] }}" class="menu-toggle">
+                    <label for="menu-{{ items[0] }}" class="menu-dots">✏️</label>
+                    <div class="menu-options">
+                        <form action="/edit/{{ items[0] }}" method="POST">
+                            <button type="submit">Edit</button>
+                        </form>
+                        <form action="/delete/{{ items[0] }}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
