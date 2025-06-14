@@ -1,127 +1,15 @@
-/* ###########  contents in base.html file  #############*/
+/* ########### General Reset / Base ########### */
 
-header {
-  position: fixed;
-  top: 0;
-  left: 60px;  /* Leave space for sidebar */
-  right: 0;
-  height: 60px;
-  padding: 0 1rem;
-  background-color: #1cbb06;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  z-index: 10;
+* {
+  box-sizing: border-box;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 60px;    /* Leave space for sidebar */
-  right: 0;
-  height: 60px;  /* Fixed height like header */
-  background-color: #6e726e;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
-  font-size: 0.9em;
-  border-top: 1px solid #ccc;
-  z-index: 10;
-}
-
-.header_logo {
-  display: flex;  
-  align-items: left;
-}
-
-
-
-.header_logo img {
-  max-height: 60px;   
-  width: auto;
-  display: block;
-}
-
-
-.footer_logo {
-  display: flex;  
-  align-items: right;
-  justify-content:flex-end;
-}
-
-.footer_logo img {
-  max-height: 100px;
-  display: block;
-}
-
-.footer_text {
-  display: flex;
-  flex-direction: column;
-}
-
-                /* ###########  side pop up menu (Hamburger menu)  #############*/
-
-.options-toggle {
-  display: none;
-}
-
-.options-icon {
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.options {
-  position: absolute;
-  top: 60px; /* Adjust based on header height */
-  right: 0;
-  background: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  display: none;
-  flex-direction: column;
-  width: 200px;
-}
-
-.options ul {
-  list-style: none;
+body {
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-.options li a {
-  display: block;
-  padding: 10px 20px;
-  color: black;
-  text-decoration: none;
-}
-
-.options li a:hover {
-  background: #eee;
-}
-
-.options-toggle:checked + .options-icon + .options {
-  display: flex;
-}
-
-                /* ###########  body of page  #############*/
-
-main {
-  margin-left: 60px; /* space for sidebar */
-  padding: 70px 1rem 70px 1rem; /* top and bottom padding to clear header/footer */
-}
-
-
-
-
-
-                                /* ###########  Side bar  #############*/
-
-
+/* ########### Sidebar ########### */
 
 .sidebar {
   position: fixed;
@@ -135,7 +23,7 @@ main {
   display: flex;
   flex-direction: column;
   padding-top: 60px; /* space for header */
-  z-index: 15; /* ensure it's above header/footer if needed */
+  z-index: 15; /* above footer but below header */
 }
 
 .sidebar:hover {
@@ -163,7 +51,6 @@ main {
   color: white;
 }
 
-
 .label {
   opacity: 0;
   transition: opacity 0.3s;
@@ -172,4 +59,126 @@ main {
 
 .sidebar:hover .label {
   opacity: 1;
+}
+
+/* ########### Header ########### */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 60px; /* next to sidebar */
+  right: 0;
+  height: 60px;
+  background-color: #1cbb06;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+.header_logo {
+  display: flex;
+  align-items: center;
+}
+
+.header_logo img {
+  max-height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* ########### Footer ########### */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 60px; /* next to sidebar */
+  right: 0;
+  background-color: #6e726e;
+  color: white;
+  padding: 10px 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #ccc;
+  z-index: 20;
+  min-height: 60px;
+  /* prevent footer from collapsing */
+}
+
+.footer_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.footer_logo img {
+  max-height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* ########### Main Content ########### */
+
+main {
+  margin-left: 60px; /* space for sidebar */
+  margin-top: 60px; /* space for header */
+  margin-bottom: 60px; /* space for footer */
+  padding: 1rem;
+}
+
+/* ########### Hamburger Menu ########### */
+
+.options-toggle {
+  display: none;
+}
+
+.options-icon {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+}
+
+.options {
+  position: absolute;
+  top: 60px; /* below header */
+  right: 0;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  width: 200px;
+  z-index: 30;
+}
+
+.options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.options li a {
+  display: block;
+  padding: 10px 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.options li a:hover {
+  background: #eee;
+}
+
+.options-toggle:checked + .options-icon + .options {
+  display: flex;
 }
