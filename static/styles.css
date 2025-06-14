@@ -1,3 +1,5 @@
+/* BASE.HTML CONTENT */
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -121,4 +123,51 @@ footer {
 
 .footer_text p {
   margin: 2px 0;
+}
+
+
+/* HOME.HTML CONTENT */
+
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* spacing between rows */
+  padding-bottom: 2rem; /* space below blocks */
+}
+
+.top-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.block {
+  background-color: #f9f9f9; /* light background so border stands out */
+  border: 3px solid;
+  border-radius: 8px;
+  padding: 1rem;
+  flex: 1; /* equal width */
+  height: 250px; /* fixed equal height */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Different border colors for visual separation */
+.income-expense {
+  border-color: #1cbb06; /* green */
+}
+
+.pie-chart {
+  border-color: #ff9800; /* orange */
+}
+
+.monthly-spending-graph {
+  border-color: #2196f3; /* blue */
+  height: 250px; 
+  flex-basis: 100%; /* full width below */
 }
