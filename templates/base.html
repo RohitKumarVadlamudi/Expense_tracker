@@ -1,75 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>{% block title %}My App{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-{% block head %}{% endblock %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    {% block head %}{% endblock %}
 </head>
 <body>
-  <header>
-    <div class="header_left">
-      <!-- Sidebar toggle checkbox -->
-      <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle" />
-      <label for="sidebar-toggle" class="sidebar-toggle-label" title="Toggle menu">&#9776;</label>
 
-      <!-- Logo -->
-      <div class="header_logo">
-        <a href="/">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-        </a>
-      </div>
+    <!-- Fixed Header -->
+    <header>
+        <label for="sidebar-toggle" class="hamburger">
+            <i class="fas fa-bars"></i>
+        </label>
+        <div class="header_logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </a>
+        </div>
+    </header>
+
+    <!-- Hidden toggle for sidebar expand/collapse -->
+    <input type="checkbox" id="sidebar-toggle" hidden>
+
+    <!-- Layout wrapper -->
+    <div class="layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="/" class="sidebar_item">
+                    <i class="fas fa-home"></i>
+                    <span class="label">Home</span>
+                </a>
+                <a href="/transactions" class="sidebar_item">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span class="label">Transactions</span>
+                </a>
+                <a href="/accounts" class="sidebar_item">
+                    <i class="fas fa-wallet"></i>
+                    <span class="label">Accounts</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+            {% block content %}{% endblock %}
+        </main>
     </div>
 
-    <!-- Hamburger menu to the right -->
-    <div class="options_menu">
-      <input type="checkbox" id="options-toggle" class="options-toggle" />
-      <label for="options-toggle" class="options-icon" title="Menu">&#9776;</label>
-      <nav class="options">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/transactions">Transactions</a></li>
-          <li><a href="/accounts">Accounts</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Footer -->
+    <footer>
+        <div class="footer_text">
+            <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
+            <p>Developed by: Rohit Kumar Vadlamudi</p>
+            <p>Contact: rohitkumarvadlamudi@gmail.com</p>
+        </div>
+        <div class="footer_logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo_with_name.png') }}" alt="Logo">
+            </a>
+        </div>
+    </footer>
 
-  <div class="container">
-    <aside class="sidebar">
-      <a class="sidebar_item" href="/">
-        <i class="fas fa-home"></i>
-        <span class="label">Home</span>
-      </a>
-      <a class="sidebar_item" href="/transactions">
-        <i class="fas fa-file-invoice-dollar"></i>
-        <span class="label">Transactions</span>
-      </a>
-      <a class="sidebar_item" href="/accounts">
-        <i class="fas fa-wallet"></i>
-        <span class="label">Accounts</span>
-      </a>
-    </aside>
-
-    <main>
-      {% block content %}{% endblock %}
-    </main>
-  </div>
-
-  <footer>
-    <div class="footer_text">
-      <p>&copy; 2025 Cheque-Check. All rights reserved.</p>
-      <p>Developed by: Rohit Kumar Vadlamudi</p>
-      <p>Contact: rohitkumarvadlamudi@gmail.com</p>
-    </div>
-    <div class="footer_logo">
-      <a href="/">
-        <img src="{{ url_for('static', filename='images/logo_with_name.png') }}" alt="Logo" />
-      </a>
-    </div>
-  </footer>
 </body>
 </html>
