@@ -6,9 +6,11 @@ header {
   display: flex;
   align-items: center;
   justify-content:space-between;
-  padding: 0px 1rem;
+  padding: 0 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+
 
 .header_logo {
   display: flex;  
@@ -97,9 +99,23 @@ footer{
 
                 /* ###########  body of page  #############*/
 
+main {
+  padding: 1rem;
+}
+
+header,
+footer,
+main {
+  margin-left: 60px;
+}
+
+
 
 
                                 /* ###########  Side bar  #############*/
+
+
+
 
 .sidebar {
   position: fixed;
@@ -114,6 +130,7 @@ footer{
   flex-direction: column;
   padding-top: 60px; /* if you have a header */
 }
+
 
 .sidebar:hover {
   width: 200px;
