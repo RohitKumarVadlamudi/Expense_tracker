@@ -14,46 +14,53 @@ def home():
 # Transactions page
 
 @app.route("/transactions")
-
 def transactions():
-	conn = sq.connect("expenses.db")
-	cursor=conn.cursor()
+    conn = sq.connect("expenses.db")
+    cursor = conn.cursor()
 
-	cursor.execute("""SELECT DISTINCT strftime('%m', date), strftime('%Y', date) FROM expenses""")
-	month_year=cursor.fetchall()
-	selected_month=request.args.get("month")
-	selected_year=request.args.get("year")
-	if selected_month and selected_month:
-		cursor.execute("""SELECT*FROM expenses WHERE strftime('%m', date) = ? AND strftime('%Y', date) = ?""", (selected_month,selected_year))
-	else:
-		cursor.execute("""SELECT*FROM expenses""")
-	expenses=cursor.fetchall()
-	conn.close()
-	return render_template("transactions.html", month=[item[0] for item in month_year], year= [item[1] for item in month_year], expenses=expenses)
+    # Get unique month/year from expenses
+    cursor.execute("""SELECT DISTINCT strftime('%m', date), strftime('%Y', date) FROM expenses""")
+    month_year = cursor.fetchall()
+
+    # Get categories for dropdown in popup
+    cursor.execute("""SELECT name FROM category""")
+    category_list = [row[0] for row in cursor.fetchall()]
+
+    selected_month = request.args.get("month")
+    selected_year = request.args.get("year")
+
+    if selected_month and selected_year:
+        cursor.execute("""SELECT * FROM expenses WHERE strftime('%m', date) = ? AND strftime('%Y', date) = ?""", (selected_month, selected_year))
+    else:
+        cursor.execute("""SELECT * FROM expenses""")
+
+    expenses = cursor.fetchall()
+    conn.close()
+    return render_template("transactions.html",
+                           month=[item[0] for item in month_year],
+                           year=[item[1] for item in month_year],
+                           expenses=expenses,
+                           category=category_list)
 
 
 # add a transaction
 
-@app.route("/add", methods=["GET","POST"])
-
+@app.route("/add", methods=["POST"])
 def add():
-	conn= sq.connect("expenses.db")
-	cursor=conn.cursor()
-	if request.method=="POST":
-		date=request.form['date']
-		amount=request.form['amount']
-		category=request.form['category']
-		notes=request.form['notes']
-		cursor.execute("""INSERT INTO expenses ( date, amount, category, notes)
-			Values(?,?,?,?)""",(date, amount,category, notes))
-		conn.commit()
-		flash("Transaction added")
-		return redirect("/transactions")
-	else:
-		cursor.execute("""SELECT name FROM category""")
-		category=[row[0] for row in cursor.fetchall()]
-	conn.close()
-	return render_template("add.html", category=category)
+    conn = sq.connect("expenses.db")
+    cursor = conn.cursor()
+    date = request.form['date']
+    amount = request.form['amount']
+    category = request.form['category']
+    notes = request.form['notes']
+    cursor.execute(
+        """INSERT INTO expenses (date, amount, category, notes) VALUES (?, ?, ?, ?)""",
+        (date, amount, category, notes)
+    )
+    conn.commit()
+    conn.close()
+    flash("Transaction added")
+    return redirect("/transactions")
 
 # add new category to category table
 
