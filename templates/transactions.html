@@ -9,7 +9,7 @@
         {% endif %}
     {% endwith %}
 
-    <!-- Checkbox hack for popup -->
+    <!-- Checkbox hack for  trasnaction popup -->
     <input type="checkbox" id="add-popup-toggle" hidden>
     <label for="add-popup-toggle" class="add-button">Add transaction</label>
 
@@ -32,15 +32,20 @@
             <label for="add-popup-toggle" class="close-btn">&times;</label>
         </div>
     </div>
+
+
+    <!-- Checkbox hack for  category popup -->
+    <input type="checkbox" id="category-popup-toggle" hidden>
+    <label for="category-popup-toggle" class="add-button">Add category</label>
     <div class="popup-overlay">
-        <label for="add-popup-toggle" class="popup-bg"></label>
+        <label for="category-popup-toggle" class="popup-bg"></label>
         <div class="popup-content">
             <h2>Add Category</h2>
             <form method="POST" action="/category-add">
                 <input id="category" name="category" type="text" placeholder="category" required>
                 <button type="submit">Add</button>
             </form>
-            <label for="add-popup-toggle" class="close-btn">&times;</label>
+            <label for="category-popup-toggle" class="close-btn">&times;</label>
         </div>
     </div>
 
