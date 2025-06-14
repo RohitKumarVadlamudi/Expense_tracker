@@ -275,3 +275,82 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+/* Transactions Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #1cbb06;
+  color: white;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e6ffe6;
+  cursor: default;
+}
+
+.menu-dots {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+
+.menu-options {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 100;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.menu-toggle:checked + .menu-dots + .menu-options {
+  display: block;
+}
+
+.menu-options form {
+  margin: 0.25rem 0;
+}
+
+.menu-options button {
+  background-color: #1cbb06;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.menu-options button:hover {
+  background-color: #159d04;
+}
+
+.menu-toggle {
+  display: none;
+}

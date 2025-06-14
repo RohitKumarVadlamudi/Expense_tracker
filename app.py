@@ -73,7 +73,7 @@ def category_add():
 	cursor.execute("""INSERT INTO category (name) VALUES (?)""",(category,))
 	conn.commit()
 	conn.close()
-	return render_template("/home.html")
+	return render_template("/transactions.html")
 
 
 # delete a transaction, button in transaction page

@@ -32,6 +32,17 @@
             <label for="add-popup-toggle" class="close-btn">&times;</label>
         </div>
     </div>
+    <div class="popup-overlay">
+        <label for="add-popup-toggle" class="popup-bg"></label>
+        <div class="popup-content">
+            <h2>Add Category</h2>
+            <form method="POST" action="/category-add">
+                <input id="category" name="category" type="text" placeholder="category" required>
+                <button type="submit">Add</button>
+            </form>
+            <label for="add-popup-toggle" class="close-btn">&times;</label>
+        </div>
+    </div>
 
     <form method="GET" action="/transactions">
         <label for="month"></label>
