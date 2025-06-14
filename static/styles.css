@@ -86,6 +86,11 @@ header {
   margin-left: 200px; /* push main right with sidebar */
 }
 
+.sidebar:hover ~ footer {
+  margin-left: 200px;
+}
+
+
 
 .sidebar_item i {
   width: 30px;
@@ -127,15 +132,21 @@ main {
 
 /* Footer */
 footer {
+  margin-left: 60px; /* Matches collapsed sidebar */
+  padding: 1rem;
   background-color: #6e726e;
   color: white;
-  padding: 10px 1rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  text-align: left;
   font-size: 0.9em;
+  border-top: 1px solid #ccc;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* ensures responsiveness on small screens */
 }
+
 
 .footer_logo img {
   height: 50px;
