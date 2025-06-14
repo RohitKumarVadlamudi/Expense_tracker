@@ -1,27 +1,17 @@
-/* Reset and base */
+/* Reset & base */
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body, html {
+  margin: 0;
+  padding: 0;
   height: 100%;
   font-family: Arial, sans-serif;
-  color: #222;
-  background: #fff;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-/* HEADER */
+/* Header */
 
 header {
   position: fixed;
@@ -30,93 +20,126 @@ header {
   right: 0;
   height: 60px;
   background-color: #1cbb06;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  z-index: 20;
-  color: black;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
 .header_left {
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
-.header_logo img {
-  height: 40px;
-  width: auto;
-  display: block;
-}
-
-header .header_nav ul {
-  display: flex;
-  gap: 1rem;
-}
-
-header .header_nav a {
-  color: black;
-  font-weight: 600;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-header .header_nav a:hover {
-  background-color: rgba(255,255,255,0.3);
-}
-
-/* SIDEBAR TOGGLE BUTTON (hamburger) */
+/* Sidebar toggle button in header */
 
 .sidebar-toggle {
   display: none;
 }
 
 .sidebar-toggle-label {
-  font-size: 1.5rem;
+  font-size: 28px;
   cursor: pointer;
-  color: white;
+  color: black;
+  padding-right: 10px;
   user-select: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
 }
 
-/* CONTAINER (sidebar + main content) */
+/* Logo */
+
+.header_logo img {
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* Options menu toggle (right side hamburger) */
+
+.options-toggle {
+  display: none;
+}
+
+.options-icon {
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+}
+
+.options {
+  position: absolute;
+  top: 60px; /* below header */
+  right: 1rem;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  width: 180px;
+  z-index: 1000;
+}
+
+.options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.options li a {
+  display: block;
+  padding: 10px 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.options li a:hover {
+  background: #eee;
+}
+
+.options-toggle:checked + .options-icon + .options {
+  display: flex;
+}
+
+/* Container for sidebar and main to push content */
 
 .container {
   display: flex;
-  padding-top: 60px; /* header height */
-  padding-bottom: 70px; /* footer height */
-  min-height: calc(100vh - 130px);
+  margin-top: 60px; /* header height */
+  min-height: calc(100vh - 60px - 60px); /* full viewport minus header and footer */
 }
 
-/* SIDEBAR */
+/* Sidebar */
 
 .sidebar {
-  position: fixed;
-  top: 60px; /* below header */
-  left: 0;
-  bottom: 70px; /* above footer */
-  width: 60px;
   background-color: #222;
+  width: 60px;
+  transition: width 0.3s;
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
   overflow-x: hidden;
-  transition: width 0.3s ease;
-  z-index: 15;
 }
+
+/* Sidebar expanded state triggered by checkbox */
+
+.sidebar-toggle:checked ~ .container .sidebar {
+  width: 200px;
+}
+
+/* Sidebar items */
 
 .sidebar_item {
   display: flex;
   align-items: center;
   padding: 15px;
   color: white;
-  transition: background 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
 }
 
 .sidebar_item:hover {
@@ -125,88 +148,93 @@ header .header_nav a:hover {
 
 .sidebar_item i {
   font-size: 1.2rem;
+  margin-right: 10px;
   width: 30px;
   text-align: center;
-  margin-right: 0;
-  flex-shrink: 0;
+  color: white;
 }
+
+/* Labels hidden by default */
 
 .label {
   opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.3s ease;
-  margin-left: 10px;
-  font-weight: 600;
+  transition: opacity 0.3s;
   pointer-events: none;
 }
 
-/* Sidebar expanded state controlled by checkbox */
-
-.sidebar-toggle:checked ~ .container .sidebar {
-  width: 200px;
-}
-
-.sidebar-toggle:checked ~ .container main {
-  margin-left: 200px;
-}
+/* Show labels when sidebar expanded */
 
 .sidebar-toggle:checked ~ .container .sidebar .label {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* MAIN CONTENT */
+/* Main content */
 
 main {
-  flex: 1;
-  margin-left: 60px;
+  flex-grow: 1;
   padding: 1rem;
-  transition: margin-left 0.3s ease;
-  min-height: calc(100vh - 130px);
+  transition: margin-left 0.3s;
+  overflow-x: auto;
 }
 
-/* FOOTER */
+/* Push main content on sidebar expand */
+
+.sidebar-toggle:checked ~ .container main {
+  margin-left: 140px; /* 200 - 60 */
+}
+
+/* Footer */
 
 footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 70px;
   background-color: #6e726e;
   color: white;
+  padding: 15px 1rem;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  align-items: center;
+  /* Footer at bottom after content */
+  position: relative;
+  bottom: 0;
+  width: 100%;
   box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
-  z-index: 20;
+  margin-top: auto;
 }
 
 .footer_text {
   display: flex;
   flex-direction: column;
-  font-size: 0.9em;
 }
 
 .footer_logo img {
-  max-height: 50px;
-  width: auto;
+  max-height: 60px;
+  display: block;
 }
 
-/* Responsive - For small screens */
+/* Scrollbar fix for main content if needed */
+
+main::-webkit-scrollbar {
+  height: 8px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+/* Responsive: smaller screens */
 
 @media (max-width: 600px) {
+  /* Hide sidebar toggle label on small screen */
+  .sidebar-toggle-label {
+    display: none;
+  }
   .sidebar {
     width: 60px !important;
   }
   main {
     margin-left: 60px !important;
-  }
-  .sidebar-toggle-label {
-    font-size: 1.3rem;
-  }
-  header .header_nav ul {
-    display: none;
   }
 }
