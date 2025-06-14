@@ -1,5 +1,3 @@
-/* BASE.HTML CONTENT */
-
 /* Reset and base styles */
 * {
   margin: 0;
@@ -12,6 +10,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f0f0f0;
 }
 
 /* Header */
@@ -49,16 +48,15 @@ header {
 
 /* Sidebar */
 .sidebar {
-  position: fixed; /* fixed so it stays on left */
-  top: 60px;       /* below header height */
+  position: fixed;
+  top: 60px;
   left: 0;
-  width: 60px;     /* collapsed width */
-  height: calc(100vh - 60px); /* full height minus header */
+  width: 60px;
+  height: calc(100vh - 60px);
   background-color: #222;
   overflow-x: hidden;
   transition: width 0.3s;
-  padding-top: 0; /* header space handled by top */
-  z-index: 20;    /* above main content */
+  z-index: 20;
 }
 
 .sidebar_item {
@@ -72,8 +70,9 @@ header {
 .sidebar_item:hover {
   background-color: #444;
 }
+
 .sidebar:hover {
-  width: 200px; /* expanded width */
+  width: 200px;
 }
 
 .sidebar:hover .label {
@@ -81,16 +80,13 @@ header {
   pointer-events: auto;
 }
 
-/* When sidebar expands */
 .sidebar:hover ~ main {
-  margin-left: 200px; /* push main right with sidebar */
+  margin-left: 200px;
 }
 
 .sidebar:hover ~ footer {
   margin-left: 200px;
 }
-
-
 
 .sidebar_item i {
   width: 30px;
@@ -104,7 +100,6 @@ header {
   transition: opacity 0.3s;
 }
 
-/* Sidebar expanded */
 #sidebar-toggle:checked ~ .layout .sidebar {
   width: 200px;
 }
@@ -113,73 +108,40 @@ header {
   opacity: 1;
 }
 
-.layout-wrapper {
-  display: flex;
-  min-height: 100vh; /* full viewport height */
-}
-
-/* Main Content */
 main {
-  margin-left: 60px;  /* leave space for collapsed sidebar */
+  margin-left: 60px;
   padding: 1rem;
-  flex-grow: 1;       /* take remaining horizontal space */
+  flex-grow: 1;
   transition: margin-left 0.3s;
+  margin-top: 60px; /* offset for header */
 }
 
 #sidebar-toggle:checked ~ .layout main {
-  margin-left: 140px; /* sidebar expansion difference */
+  margin-left: 200px;
 }
 
-/* Footer */
-footer {
-  margin-left: 60px; /* Matches collapsed sidebar */
-  padding: 1rem;
-  background-color: #6e726e;
-  color: white;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  font-size: 0.9em;
-  border-top: 1px solid #ccc;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* ensures responsiveness on small screens */
-}
-
-
-.footer_logo img {
-  height: 50px;
-}
-
-.footer_text p {
-  margin: 2px 0;
-}
-
-
-/* HOME.HTML CONTENT */
-
-
+/* Dashboard content blocks */
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; /* spacing between rows */
-  padding-bottom: 2rem; /* space below blocks */
+  padding: 2rem 1rem;
 }
 
 .top-row {
   display: flex;
   gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bottom-row {
+  display: flex;
 }
 
 .block {
-  background-color: #f9f9f9; /* light background so border stands out */
+  background-color: #fff;
   border: 3px solid;
   border-radius: 8px;
   padding: 1rem;
-  flex: 1; /* equal width */
-  height: 250px; /* fixed equal height */
-  box-sizing: border-box;
+  flex: 1;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,17 +150,39 @@ footer {
   color: #333;
 }
 
-/* Different border colors for visual separation */
 .income-expense {
-  border-color: #1cbb06; /* green */
+  border-color: #1cbb06;
 }
 
 .pie-chart {
-  border-color: #ff9800; /* orange */
+  border-color: #ff9800;
 }
 
 .monthly-spending-graph {
-  border-color: #2196f3; /* blue */
-  height: 250px; 
-  flex-basis: 100%; /* full width below */
+  border-color: #2196f3;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  margin-left: 60px;
+  padding: 1rem;
+  background-color: #6e726e;
+  color: white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer_logo img {
+  height: 50px;
+}
+
+.footer_text p {
+  margin: 2px 0;
 }
