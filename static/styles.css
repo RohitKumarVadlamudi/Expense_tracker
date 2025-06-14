@@ -1,16 +1,38 @@
 /* ###########  contents in base.html file  #############*/
 
 header {
+  position: fixed;
+  top: 0;
+  left: 60px;  /* Leave space for sidebar */
+  right: 0;
+  height: 60px;
+  padding: 0 1rem;
   background-color: #1cbb06;
   color: black;
   display: flex;
   align-items: center;
-  justify-content:space-between;
-  padding: 0 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
 }
 
-
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 60px;    /* Leave space for sidebar */
+  right: 0;
+  height: 60px;  /* Fixed height like header */
+  background-color: #6e726e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  z-index: 10;
+}
 
 .header_logo {
   display: flex;  
@@ -25,17 +47,6 @@ header {
   display: block;
 }
 
-footer{
-  background-color: #6e726e;
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  color: white;
-  padding: 15px 0;
-  text-align: left;
-  font-size: 0.9em;
-  border-top: 1px solid #ccc;
-}
 
 .footer_logo {
   display: flex;  
@@ -100,20 +111,15 @@ footer{
                 /* ###########  body of page  #############*/
 
 main {
-  padding: 1rem;
+  margin-left: 60px; /* space for sidebar */
+  padding: 70px 1rem 70px 1rem; /* top and bottom padding to clear header/footer */
 }
 
-header,
-footer,
-main {
-  margin-left: 60px;
-}
 
 
 
 
                                 /* ###########  Side bar  #############*/
-
 
 
 
@@ -128,9 +134,9 @@ main {
   transition: width 0.3s;
   display: flex;
   flex-direction: column;
-  padding-top: 60px; /* if you have a header */
+  padding-top: 60px; /* space for header */
+  z-index: 15; /* ensure it's above header/footer if needed */
 }
-
 
 .sidebar:hover {
   width: 200px;
