@@ -49,16 +49,16 @@ header {
 
 /* Sidebar */
 .sidebar {
+  position: fixed; /* fixed so it stays on left */
+  top: 60px;       /* below header height */
+  left: 0;
+  width: 60px;     /* collapsed width */
+  height: calc(100vh - 60px); /* full height minus header */
   background-color: #222;
-  color: white;
-  height: calc(100vh - 60px);
-  width: 60px;
-  transition: width 0.3s ease;
   overflow-x: hidden;
-  position: sticky;
-  top: 60px;
-  flex-shrink: 0;
-  padding-top: 1rem;
+  transition: width 0.3s;
+  padding-top: 0; /* header space handled by top */
+  z-index: 20;    /* above main content */
 }
 
 .sidebar_item {
@@ -72,6 +72,20 @@ header {
 .sidebar_item:hover {
   background-color: #444;
 }
+.sidebar:hover {
+  width: 200px; /* expanded width */
+}
+
+.sidebar:hover .label {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* When sidebar expands */
+.sidebar:hover ~ main {
+  margin-left: 200px; /* push main right with sidebar */
+}
+
 
 .sidebar_item i {
   width: 30px;
@@ -94,10 +108,16 @@ header {
   opacity: 1;
 }
 
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh; /* full viewport height */
+}
+
 /* Main Content */
 main {
-  flex: 1;
+  margin-left: 60px;  /* leave space for collapsed sidebar */
   padding: 1rem;
+  flex-grow: 1;       /* take remaining horizontal space */
   transition: margin-left 0.3s;
 }
 
