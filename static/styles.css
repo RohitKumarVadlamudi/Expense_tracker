@@ -94,3 +94,59 @@ footer{
 .options-toggle:checked + .options-icon + .options {
   display: flex;
 }
+
+                /* ###########  body of page  #############*/
+
+
+
+                                /* ###########  Side bar  #############*/
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px;
+  background-color: #222;
+  overflow-x: hidden;
+  transition: width 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px; /* if you have a header */
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+.sidebar_item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.sidebar_item:hover {
+  background-color: #444;
+}
+
+.sidebar_item i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  width: 30px;
+  text-align: center;
+  color: white;
+}
+
+
+.label {
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.sidebar:hover .label {
+  opacity: 1;
+}
